@@ -1,0 +1,28 @@
+train:
+  seed: 114514
+  batch_size: 256
+  num_workers: 20
+  max_grad_norm: 100.0
+  optimizer:
+    type: adam
+    lr: 2.e-4
+    weight_decay: 0
+    beta1: 0.99
+    beta2: 0.999
+  scheduler:
+    type: plateau
+    factor: 0.6
+    patience: 8
+    min_lr: 1.e-5
+
+resume_train:
+  resume_train: False
+  ckpt_name: ./
+  checkpoint_path: ./
+  start_epoch: 0
+
+dataset:
+  name: CrossDock
+  data_base: /home/haotian/Molecule_Generation/Res2Mol/data/crossdocked_pocket10
+  split: /home/haotian/Molecule_Generation/Res2Mol/data/split_by_name.pt
+  use_cache: True

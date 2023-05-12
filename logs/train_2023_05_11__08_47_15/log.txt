@@ -1,0 +1,48 @@
+[2023-05-11 08:47:15,309::train::INFO] Namespace(config='./configs/train.yml', device='cuda', logdir='./logs')
+[2023-05-11 08:47:15,309::train::INFO] {'train': {'seed': 114514, 'batch_size': 128, 'num_workers': 20, 'max_grad_norm': 100.0, 'optimizer': {'type': 'adam', 'lr': 0.0002, 'weight_decay': 0, 'beta1': 0.99, 'beta2': 0.999}, 'scheduler': {'type': 'plateau', 'factor': 0.6, 'patience': 8, 'min_lr': 1e-05}}, 'resume_train': {'resume_train': False, 'ckpt_name': './', 'checkpoint_path': './', 'start_epoch': 0}, 'dataset': {'name': 'CrossDock', 'data_base': '/home/haotian/Molecule_Generation/Res2Mol/data/crossdocked_pocket10', 'split': '/home/haotian/Molecule_Generation/Res2Mol/data/split_by_name.pt', 'use_cache': True}}
+[2023-05-11 08:47:17,456::train::INFO] This training is to construct the point could into pockets...
+[2023-05-11 08:47:17,456::train::INFO] Start to load data...
+[2023-05-11 08:47:17,484::train::INFO] The loaded protein-ligand pairs used for training are 99730
+[2023-05-11 08:47:17,484::train::INFO] start training...
+[2023-05-11 08:50:48,161::train::INFO] Training Epoch 0 | Loss 0.662832
+[2023-05-11 08:50:53,860::train::INFO] Training Epoch 0 | Loss 0.630167
+[2023-05-11 08:50:54,616::train::INFO] Training Epoch 0 | Loss 0.608460
+[2023-05-11 08:51:01,271::train::INFO] Training Epoch 0 | Loss 0.593902
+[2023-05-11 08:51:02,032::train::INFO] Training Epoch 0 | Loss 0.582040
+[2023-05-11 08:51:02,772::train::INFO] Training Epoch 0 | Loss 0.569941
+[2023-05-11 08:51:03,522::train::INFO] Training Epoch 0 | Loss 0.558957
+[2023-05-11 08:51:22,531::train::INFO] Training Epoch 0 | Loss 0.562072
+[2023-05-11 08:51:23,289::train::INFO] Training Epoch 0 | Loss 0.549013
+[2023-05-11 08:51:24,041::train::INFO] Training Epoch 0 | Loss 0.550554
+[2023-05-11 11:01:40,455::train::INFO] Training Epoch 0 | Loss 0.530827
+[2023-05-11 11:01:57,347::train::INFO] Evaluation Epoch 0 | Loss 0.515130
+[2023-05-11 13:17:42,244::train::INFO] Training Epoch 1 | Loss 0.528520
+[2023-05-11 13:18:00,120::train::INFO] Evaluation Epoch 1 | Loss 0.514009
+[2023-05-11 15:33:34,473::train::INFO] Training Epoch 2 | Loss 0.527941
+[2023-05-11 15:33:54,329::train::INFO] Evaluation Epoch 2 | Loss 0.513816
+[2023-05-11 17:49:22,220::train::INFO] Training Epoch 3 | Loss 0.527233
+[2023-05-11 17:49:39,316::train::INFO] Evaluation Epoch 3 | Loss 0.515417
+[2023-05-11 20:04:03,929::train::INFO] Training Epoch 4 | Loss 0.526969
+[2023-05-11 20:04:20,932::train::INFO] Evaluation Epoch 4 | Loss 0.514052
+[2023-05-11 22:20:32,570::train::INFO] Training Epoch 5 | Loss 0.526726
+[2023-05-11 22:20:51,260::train::INFO] Evaluation Epoch 5 | Loss 0.511733
+[2023-05-12 00:36:22,101::train::INFO] Training Epoch 6 | Loss 0.526288
+[2023-05-12 00:36:40,210::train::INFO] Evaluation Epoch 6 | Loss 0.512662
+[2023-05-12 02:52:55,440::train::INFO] Training Epoch 7 | Loss 0.526428
+[2023-05-12 02:53:14,796::train::INFO] Evaluation Epoch 7 | Loss 0.512844
+[2023-05-12 05:08:32,887::train::INFO] Training Epoch 8 | Loss 0.526077
+[2023-05-12 05:08:51,049::train::INFO] Evaluation Epoch 8 | Loss 0.515986
+[2023-05-12 07:25:21,288::train::INFO] Training Epoch 9 | Loss 0.525820
+[2023-05-12 07:25:39,688::train::INFO] Evaluation Epoch 9 | Loss 0.514921
+[2023-05-12 09:42:11,936::train::INFO] Training Epoch 10 | Loss 0.525659
+[2023-05-12 09:42:29,712::train::INFO] Evaluation Epoch 10 | Loss 0.515144
+[2023-05-12 11:59:06,785::train::INFO] Training Epoch 11 | Loss 0.525432
+[2023-05-12 11:59:24,385::train::INFO] Evaluation Epoch 11 | Loss 0.513498
+[2023-05-12 14:13:17,754::train::INFO] Training Epoch 12 | Loss 0.525321
+[2023-05-12 14:13:35,336::train::INFO] Evaluation Epoch 12 | Loss 0.516095
+[2023-05-12 16:29:38,997::train::INFO] Training Epoch 13 | Loss 0.525112
+[2023-05-12 16:29:57,466::train::INFO] Evaluation Epoch 13 | Loss 0.511371
+[2023-05-12 18:46:04,827::train::INFO] Training Epoch 14 | Loss 0.524898
+[2023-05-12 18:46:23,691::train::INFO] Evaluation Epoch 14 | Loss 0.514479
+[2023-05-12 21:01:55,279::train::INFO] Training Epoch 15 | Loss 0.524799
+[2023-05-12 21:02:12,501::train::INFO] Evaluation Epoch 15 | Loss 0.515780

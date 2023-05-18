@@ -8,10 +8,22 @@ try:
 except:
     from utils.htmd_utils import _getChannelRadii
 
-def _getGridCenters(llc, N, resolution):
-    xrange = [llc[0] + resolution * x for x in range(0, N[0])]
-    yrange = [llc[1] + resolution * x for x in range(0, N[1])]
-    zrange = [llc[2] + resolution * x for x in range(0, N[2])]
+def BuildGridCenters(llc, N, step):
+    """
+    llc: lower left corner
+    N: number of cells in each direction
+    step: step size
+    """
+
+    if type(step) == float:
+        xrange = [llc[0] + step * x for x in range(0, N[0])]
+        yrange = [llc[1] + step * x for x in range(0, N[1])]
+        zrange = [llc[2] + step * x for x in range(0, N[2])]
+    elif type(step) == list or type(step) == tuple:
+        xrange = [llc[0] + step[0] * x for x in range(0, N[0])]
+        yrange = [llc[1] + step[1] * x for x in range(0, N[1])]
+        zrange = [llc[2] + step[2] * x for x in range(0, N[2])]
+
     centers = np.zeros((N[0], N[1], N[2], 3))
     for i, x in enumerate(xrange):
         for j, y in enumerate(yrange):
@@ -22,9 +34,9 @@ def _getGridCenters(llc, N, resolution):
 resolution = 1.
 size = 24
 N = [size, size, size]
-bbm = (np.zeros(3) - float(size * 1. / 2))
+llc = (np.zeros(3) - float(size * 1. / 2))
 # Now, the box is 24×24×24 A^3
-expanded_pcenters = _getGridCenters(bbm, N, resolution)
+expanded_pcenters = BuildGridCenters(llc, N, resolution)
 
 
 def rotate(coords, rotMat, center=(0,0,0)):

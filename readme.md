@@ -38,7 +38,7 @@ pip install transformers==4.26.1 adapter-transformers==3.2.1 pytorch-ignite
 
 
 
-
+<img src='./figs/liglava.gif' width='30%'/> <img src='./figs/pkt_lig.gif' width='30%'/> <img src='./figs/ligink.gif' width='30%'/>
 
 
 

@@ -85,7 +85,6 @@ def create_h5(h5_path, ecloud_path, mol_csv, max_length=64, tokenizer_filename='
             data = mols_data.iloc[mol_id]
             smiles = data.SMILES
             smiles = np.array(tokenizer.encode(smiles,truncation=True,padding='max_length',max_length=max_length))
-            print(smiles.shape)
             condition = [data.qed, data.logp, data.TPSA]
             try:
                 hf['smiles'][i] = smiles

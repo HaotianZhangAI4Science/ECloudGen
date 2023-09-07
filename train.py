@@ -14,7 +14,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--data_root', type=str, default='./mol_data/ecloud')
+    parser.add_argument('--data_root', type=str, default='./data/ecloud')
     parser.add_argument('--checkpoint', type=str, default='./ckpt')
     parser.add_argument('--output_dir', type=str, default='./output')
     # Training Configuration

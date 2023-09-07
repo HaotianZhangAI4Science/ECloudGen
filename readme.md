@@ -22,12 +22,19 @@ pip install transformers==4.26.1 adapter-transformers==3.2.1 pytorch-ignite
 ```
 
 <div style="text-align: center;">
-    <img src='./figs/ligink.gif' style="width: 30%; display: inline-block;" alt="Image 1" />
-    <img src='./figs/liglava.gif' style="width: 30%; display: inline-block;" alt="Image 2" />
-    <img src='./figs/pkt_lig.gif' style="width: 30%; display: inline-block;" alt="Image 3" />
+    <figure style="width: 30%; display: inline-block;">
+        <img src='./figs/ligink.gif' alt="Image 1" style="width: 100%;">
+        <figcaption>Latent Diffusion Process</figcaption>
+    </figure>
+    <figure style="width: 30%; display: inline-block;">
+        <img src='./figs/liglava.gif' alt="Image 2" style="width: 100%;">
+        <figcaption>Electron Clouds</figcaption>
+    </figure>
+    <figure style="width: 30%; display: inline-block;">
+        <img src='./figs/pkt_lig.gif' alt="Image 3" style="width: 100%;">
+        <figcaption>Pocket-Liand Interaction</figcaption>
+    </figure>
 </div>
-
-
 
 
 

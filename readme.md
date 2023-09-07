@@ -21,26 +21,11 @@ pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --e
 pip install transformers==4.26.1 adapter-transformers==3.2.1 pytorch-ignite
 ```
 
-<div style="text-align: center;">
-    <figure style="width: 30%; display: inline-block;">
-        <img src='./figs/ligink.gif' alt="Image 1" style="width: 100%;">
-        <figcaption>Latent Diffusion Process</figcaption>
-    </figure>
-    <figure style="width: 30%; display: inline-block;">
-        <img src='./figs/liglava.gif' alt="Image 2" style="width: 100%;">
-        <figcaption>Electron Clouds</figcaption>
-    </figure>
-    <figure style="width: 30%; display: inline-block;">
-        <img src='./figs/pkt_lig.gif' alt="Image 3" style="width: 100%;">
-        <figcaption>Pocket-Liand Interaction</figcaption>
-    </figure>
-</div>
-
 
 
 <img src='./figs/liglava.gif' width='30%'/> <img src='./figs/pkt_lig.gif' width='30%'/> <img src='./figs/ligink.gif' width='30%'/>
 
-
+The figures represent: Electron Clouds; Protein-Ligand Interactions; Latent Diffusion Process
 
 
 

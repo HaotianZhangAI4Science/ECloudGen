@@ -21,6 +21,28 @@ pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --e
 pip install transformers==4.26.1 adapter-transformers==3.2.1 pytorch-ignite
 ```
 
+<div style="text-align: center;">
+    <img src='./figs/ligink.gif' style="width: 30%; display: inline-block;" alt="Image 1" />
+    <img src='./figs/liglava.gif' style="width: 30%; display: inline-block;" alt="Image 2" />
+    <img src='./figs/pkt_lig.gif' style="width: 30%; display: inline-block;" alt="Image 3" />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Data 

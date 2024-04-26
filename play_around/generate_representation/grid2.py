@@ -6,7 +6,7 @@ from rdkit import Chem
 try:
     from htmd_utils2 import _getChannelRadii
 except:
-    from utils.htmd_utils2 import _getChannelRadii
+    from MG.ECloudGen_ELIP.utils.htmd_utils import _getChannelRadii
 
 def BuildGridCenters(llc, N, step):
     """

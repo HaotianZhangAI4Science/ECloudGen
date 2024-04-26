@@ -15,3 +15,11 @@ def get_center(mol):
 def read_sdf(sdf_file):
     suppl = Chem.SDMolSupplier(sdf_file)
     return [mol for mol in suppl]
+
+import numpy as np
+import copy
+def set_mol_position(mol, pos):
+    mol = copy.deepcopy(mol)
+    for i in range(pos.shape[0]):
+        mol.GetConformer(0).SetAtomPosition(i, pos[i].tolist())
+    return mol 

@@ -75,7 +75,7 @@ def write_lmdb(output_dir, name):
 # calculater = CDCalculator(xtb_command='xtb')
 # or you can use definite path
 def get_ecloud_pair(pkt_mol, lig_mol, grid_protocol):
-    calculater = CDCalculator(xtb_command='/home/haotian/Molecule_Generation/MG/ECloudGen_ELIP/ecloud_utils/xtb-bleed/bin/xtb')
+    calculater = CDCalculator(xtb_command='xtb')
     pkt_smallmol = SmallMol(pkt_mol)
 
     lig_coords = lig_mol.GetConformer().GetPositions()

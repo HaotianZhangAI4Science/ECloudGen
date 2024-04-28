@@ -38,7 +38,7 @@ tar -xzvf crossdocked_pocket10.tar.gz
 ## Generation 
 
 <div align=center>
-<img src="./configs/figs/ECloudgen.png" width="90%" height="90%" alt="TOC" align=center />
+<img src="./configs/figs/ECloudGen.png" width="90%" height="90%" alt="TOC" align=center />
 </div>
 
 

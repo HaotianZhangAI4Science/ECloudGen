@@ -22,10 +22,6 @@ This environment has been successfully tested on CUDA==11.3
 mamba create -n ecloudgen rdkit openbabel moleculekit easydict pyyaml jupyter python-lmdb pytorch cudatoolkit=11.3 omegaconf einops scipy accelerate h5py wandb xtb python=3.9 -c conda-forge
 ```
 
-
-
-
-
 ## Data 
 
 ### Protein-ligand pair dataset preparation. 
@@ -53,7 +49,6 @@ The training process is released as train.py, the following command is an exampl
 ```shell
 # modify the data path and batch_size in the ./configs/eclouddiff.yml 
 python train_eclouddiff.py 
-
 ```
 
 

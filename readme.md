@@ -1,37 +1,26 @@
 ECloudGen
 =======
 
+<img src='./configs/figs/liglava.gif' width='30%'/> <img src='./configs/figs/pkt_lig.gif' width='30%'/> <img src='./configs/figs/ligink.gif' width='30%'/>
+
+The figures represent: Electron Clouds; Protein-Ligand Interactions; Latent Diffusion Process
 
 ## Environment 
 
 ### Install via conda yaml file (cuda 11.3)
 
 ```python
-mamba env create -f resgen.yml
-mamba activate resgen 
+conda env create -f resgen.yml
+conda activate resgen 
 ```
 
 ### Install manually 
 
-This environment have been successfully tested on CUDA==11.3
+This environment has been successfully tested on CUDA==11.3
 
 ```
-mamba create -n ecloud rdkit python=3.9 h5py jupyter ipykernel -c conda-forge
-pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
-pip install transformers==4.26.1 adapter-transformers==3.2.1 pytorch-ignite
+conda create -n ecloudgen rdkit openbabel moleculekit easydict pyyaml jupyter python-lmdb pytorch cudatoolkit=11.3 omegaconf einops scipy accelerate h5py wandb xtb python=3.9 -c conda-forge 
 ```
-
-
-
-<img src='./figs/liglava.gif' width='30%'/> <img src='./figs/pkt_lig.gif' width='30%'/> <img src='./figs/ligink.gif' width='30%'/>
-
-The figures represent: Electron Clouds; Protein-Ligand Interactions; Latent Diffusion Process
-
-
-
-
-
-
 
 
 
@@ -39,7 +28,7 @@ The figures represent: Electron Clouds; Protein-Ligand Interactions; Latent Diff
 
 ## Data 
 
-The main data for training is CrossDock2020, which is utilized by most of the methods. 
+See dataset
 
 **Note: data is only necessary for training. For use-only mode, please directly check the generation part.**  
 
@@ -94,7 +83,7 @@ We provide the pdbid-14gs as the example
 The training process is released as train.py, the following command is an example of how to train a model.
 
 ```python
-python train.py --config ./configs/train_res.yml --logdir logs
+python train_eclouddiff.py
 ```
 
 

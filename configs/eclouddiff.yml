@@ -1,0 +1,72 @@
+DATA:
+  DATA_ROOT: "/home/haotian/Molecule_Generation/MG/ECloudGen_ELIP/data"
+  TRAIN_DATA: "pkt_lig_train_0_1000.h5"
+  VALID_DATA: "pkt_lig_valid_0_200.h5"
+  train_batch_size: 1 # 104
+  valid_batch_size: 1 # 104
+
+MODEL:
+  CHECKPOINT_PATH: './save/ecloud_ldm'
+  USE_MODEL_CKPT: False
+  MODEL_NAME: 'ecloud_ldm_10.pt'
+  USE_EMA: False
+  FREEZE_ENCODER_DECODER: True
+  FREEZE_DIFFUSION_MODEL: False
+  PKT_ENCODER:
+    BASE_DIM: 128
+    NUM_BLOCK: 2
+    CNN_FACTOR: 2
+    OUTPUT_DIM: 256
+
+  LIG_ENCODER:
+    BASE_DIM: 128
+    NUM_BLOCK: 2
+    CNN_FACTOR: 2
+    OUTPUT_DIM: 256
+
+  DECODER:
+    BASE_DIM: 256  # align with ENCODER.OUTPUT_DIM 
+    NUM_BLOCK: 2  # align with ENCODER.NUM_BLOCK 
+
+  DIFFUSION:
+    time_step: 1000
+    model_mean_type: "X0"      # X0, EPS, PREVIOUS_X
+    rescale_timesteps: False
+    add_noise: True
+    add_vqvae_loss: False
+    UNET:
+      in_channels: 512
+      model_channels: 256
+      out_channels: 256
+      num_res_blocks: 1
+      attention_resolutions: [ 4, 2, 1 ]
+      dropout: 0
+      channel_mult: [ 1, 2, 2 ]
+      conv_resample: True
+      dims: 3
+      num_heads: 8
+
+SOLVER:
+  TRAINING: True
+  CLIP_GRAD: False
+  SAVE_STEP: 1
+  OPTIMIZER_NAME: "AdamW"
+  MAX_STEPS: 0
+  MAX_EPOCHS: 30
+  WEIGHT_DECAY: 0.01
+  WEIGHT_DECAY_BIAS: 0.0
+  BASE_LR: 1.0e-4
+  BIAS_LR_FACTOR: 2
+  NUM_WORKERS: 8
+  GRADIENT_ACC: 1
+  SCHED: "WarmupLinearLR"
+  LR_SCHEDULER: "linear"
+  WARMUP_METHOD: "linear"
+  WARMUP_STEP_RATIO: 0.05
+  WARMUP_FACTOR: 0.01
+  GAMMA: 0.9
+  AGB: 1
+
+
+WANDB:
+  KEY: 'db6dc4900419e1e9ec25f50a80a3b5712b95b88c'

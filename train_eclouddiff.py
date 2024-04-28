@@ -9,7 +9,7 @@ import logging
 from accelerate import Accelerator
 from task import Task, Trainer
 from datasets.EcloudDataset import ProteinLigandPairDataset # used
-from models.ECloudDiff.ldm import EcloudLatentDiffusionModel # used
+from models.ECloudDiff.latentdiff import EcloudLatentDiffusionModel # used
 
 logger = logging.getLogger("moleculekit.smallmol.smallmol")
 logger.setLevel(logging.WARNING)
@@ -21,17 +21,6 @@ def get_abs_path(*name):
         return fn
     return os.path.abspath(os.path.join(os.getcwd(), fn))
 
-def get_config(config_path="", opts=[]):
-    '''
-    Marge the base config, model config, and cli config
-    '''
-    base_config = OmegaConf.load(get_abs_path('configs', 'base.yml'))
-    model_config = OmegaConf.load(get_abs_path('configs', config_path)) if len(config_path) > 0 else OmegaConf.create(
-        "")
-    cli_config = OmegaConf.from_dotlist(opts)
-    config = OmegaConf.merge(base_config, model_config, cli_config)
-    return config
-
 def updata_cfg(cfg, args):
     for k, v in args.__dict__.items():
         cfg[k] = v
@@ -41,18 +30,18 @@ def updata_cfg(cfg, args):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Molecule Generation For Transformer3D")
-    parser.add_argument("--config", type=str, default='ecloud', choices=['ecloud'],
+    parser.add_argument("--config", type=str, default='eclouddiff', choices=['eclouddiff'],
                         help="Selected a config for this task.")
     parser.add_argument("--gpus", type=str,  default='0')
     parser.add_argument('--debug', type=bool, default=True, help='is or not debug')
-    parser.add_argument('--project_name', type=str, default='ECloudGen', help='pro_ject name')
+    parser.add_argument('--project_name', type=str, default='ECloudGen', help='project name')
     parser.add_argument('--task_name', type=str,
-                        default='ecloud64_ldm_ddpm', help='task_name name')
-    parser.add_argument('--save', type=str, default='ecloud64_ldm_ddpm')
+                        default='eclouddiff_32', help='task_name name')
+    parser.add_argument('--save', type=str, default='eclouddiff_32')
     parser.add_argument('--seed', type=int, default=42)
     args = parser.parse_args()
 
-    cfg = get_config(f'{args.config}.yml')
+    cfg = OmegaConf.load(get_abs_path('configs', f'{args.config}.yml'))
     cfg = updata_cfg(cfg, args)
 
     # set
@@ -77,7 +66,7 @@ if __name__ == '__main__':
             shutil.copy(os.path.join('configs', args.config + '.yml'), os.path.join('./save', args.save, 'configs.yml'))
         if not args.debug:
             wandb.login(key=cfg.WANDB.KEY)
-            wandb.init(project=args.project_name, entity="chenyu01", name=args.task_name)
+            wandb.init(project=args.project_name, entity="Odin", name=args.task_name)
             wandb.config = args
 
     accelerator.wait_for_everyone()

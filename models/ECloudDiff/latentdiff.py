@@ -16,7 +16,7 @@ from torch import einsum
 from abc import ABC, abstractmethod
 from models.ECloudDiff.nn import mean_flat
 
-@register_model(['ecloud'])
+@register_model(['eclouddiff'])
 class EcloudLatentDiffusionModel(nn.Module):
     def __init__(self, cfg):
         super(EcloudLatentDiffusionModel, self).__init__()
@@ -98,7 +98,7 @@ class EcloudLatentDiffusionModel(nn.Module):
                                        torch.tensor([0]).to(x_start_mean.device),
                                        x_start_mean.shape)
             x_start_log_var = 2 * torch.log(std)
-            # 这一步也看做是一阶马尔可夫过程
+            # This step can be regarded as a first-order Markov process
             x_start = self.get_x_start(x_start_mean, std)
             # x_start = x_start_mean
             # p(xt|x0)
@@ -106,7 +106,7 @@ class EcloudLatentDiffusionModel(nn.Module):
             x_t_lig = self.q_sample(x_start, t, noise=noise)  # reparametrization trick.
             x_t = torch.cat([_pkt_z, x_t_lig], dim=1)
             model_output = self.model(x_t, self._scale_timesteps(t))
-            # 3种建模方式，选择不同的标签
+            # 3 modeling methods, choose different tags
             target = {
                 'PREVIOUS_X': self.q_posterior_mean_variance(
                     x_start=x_start, x_t=x_t_lig, t=t
@@ -124,9 +124,9 @@ class EcloudLatentDiffusionModel(nn.Module):
             terms["mse"] = torch.where(t0_mask, t0_loss, terms["mse"])
             terms["mse"] = terms["mse"].mean()
             """
-            由于Encoder是带有参数的，因此p(xt| x0) = p_gamma(xt| x0), gamma是encoder参数，因此需要补充这个loss
-            DDPM中这项loss不带有参数，所以是个常数，可以忽略，但是这里有Encoder，这项不再是个常数，需要单独计算loss
-            从loss的形式可以看出来，目标是对Encoder输出的一种正则项，防止Encoder输出的值过大
+            Since the Encoder has parameters, p(xt| x0) = p_gamma(xt| x0), gamma is the encoder parameter, so this loss needs to be added
+            In DDPM, this loss does not have parameters, so it is a constant and can be ignored, but here there is an Encoder, this is no longer a constant, and the loss needs to be calculated separately
+            From the form of loss, it can be seen that the goal is to be a regular term for the Encoder output to prevent the Encoder output value from being too large
             """
             if not self.cfg.MODEL.FREEZE_ENCODER_DECODER and not self.cfg.MODEL.FREEZE_DIFFUSION_MODEL:
                 out_mean, _, _ = self.q_mean_variance(x_start, torch.LongTensor([self.num_timesteps - 1]).to(x_start.device))

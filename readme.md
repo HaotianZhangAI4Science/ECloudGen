@@ -19,7 +19,7 @@ conda activate ecloudgen
 This environment has been successfully tested on CUDA==11.3
 
 ```
-mamba create -n ecloudgen rdkit openbabel moleculekit easydict pyyaml jupyter python-lmdb pytorch cudatoolkit=11.3 omegaconf einops scipy accelerate h5py wandb xtb python=3.9 -c conda-forge
+conda create -n ecloudgen rdkit openbabel moleculekit scikit-learn scipy jupyter python-lmdb pytorch cudatoolkit=11.3 omegaconf einops accelerate h5py wandb xtb ignite gpytorch altair python=3.9 -c conda-forge 
 ```
 
 ## Data 

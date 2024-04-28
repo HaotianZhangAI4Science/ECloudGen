@@ -3,7 +3,7 @@ ECloudGen
 
 <img src='./configs/figs/liglava.gif' width='30%'/> <img src='./configs/figs/pkt_lig.gif' width='30%'/> <img src='./configs/figs/ligink.gif' width='30%'/>
 
-The figures represent: Electron Clouds; Protein-Ligand Interactions; Latent Diffusion Process
+This figure represent: Electron Clouds; Protein-Ligand Interactions; Latent Diffusion Process
 
 ## Environment 
 

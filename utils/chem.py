@@ -4,6 +4,11 @@ from rdkit import RDLogger
 lg = RDLogger.logger()
 lg.setLevel(RDLogger.CRITICAL)
 import copy
+try:
+    from .pdb_parser import PDBProtein
+except:
+    from utils.pdb_parser import PDBProtein
+
 def set_mol_position(mol, pos):
     mol = copy.deepcopy(mol)
     for i in range(pos.shape[0]):
@@ -58,3 +63,28 @@ def write_pkl(list,file):
     with open(file,'wb') as f:
         pickle.dump(list,f)
         print('pkl file saved at {}'.format(file))
+
+
+def pocket_trunction(pdb_file, threshold=10, outname=None, sdf_file=None, centroid=None):
+    
+    pdb_parser = PDBProtein(pdb_file)
+    if centroid is None:
+        centroid = sdf2centroid(sdf_file)
+    else:
+        centroid = centroid
+    residues = pdb_parser.query_residues_radius(centroid,threshold)
+    residue_block = pdb_parser.residues_to_pdb_block(residues)
+    if outname is None:
+        outname = pdb_file[:-4]+f'_pocket{threshold}.pdb'
+    f = open(outname,'w')
+    f.write(residue_block)
+    f.close()
+
+    return outname
+def sdf2centroid(sdf_file):
+    supp = Chem.SDMolSupplier(sdf_file, sanitize=False)
+    lig_xyz = supp[0].GetConformer().GetPositions()
+    centroid_x = lig_xyz[:,0].mean()
+    centroid_y = lig_xyz[:,1].mean()
+    centroid_z = lig_xyz[:,2].mean()
+    return centroid_x, centroid_y, centroid_z

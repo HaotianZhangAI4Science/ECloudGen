@@ -16,14 +16,8 @@ from moleculekit.smallmol.smallmol import SmallMol
 from moleculekit.tools.voxeldescriptors import _getOccupancyC
 from tqdm import tqdm
 from multiprocessing import Pool
+# from utils.protein_ligand import get_occu_ecloud_pair, protocol
 
-
-# max_dist = 6.35
-# boundary = 2 * max_dist
-# resolution = 0.2  # boundy / size
-# size = int(boundary / resolution)
-# assert size % 1 == 0, print('Error: size must be an integer')
-# size += 1
 
 def protocol(mode=32):
     '''
@@ -73,8 +67,8 @@ def write_lmdb(output_dir, name):
     return txn_write, env_new
 
 # calculater = CDCalculator(xtb_command='xtb')
-# or you can use definite path
-def get_ecloud_pair(pkt_mol, lig_mol, grid_protocol):
+# or you can use definite path of the xtb
+def get_occu_ecloud_pair(pkt_mol, lig_mol, grid_protocol):
     calculater = CDCalculator(xtb_command='xtb')
     pkt_smallmol = SmallMol(pkt_mol)
 
@@ -130,7 +124,7 @@ def single_process(index):
         pkt_channel_list = []
         lig_density_list = []
         for _ in range(5): 
-            pkt_channel, lig_density = get_ecloud_pair(pkt_mol, lig_mol, grid_protocol=protocol(32))
+            pkt_channel, lig_density = get_occu_ecloud_pair(pkt_mol, lig_mol, grid_protocol=protocol(32))
             pkt_channel = pkt_channel.astype(np.float16)
             lig_density = lig_density.astype(np.float16)
             pkt_channel_list.append(pkt_channel)
@@ -142,14 +136,14 @@ def single_process(index):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="data_process ")
-    parser.add_argument("--root", type=str, default="/home/haotian/Molecule_Generation/SurfGen/data/crossdocked_pocket10")
-    parser.add_argument("--index_path", type=str, default="/home/haotian/Molecule_Generation/ResGen-main/data/crossdocked_pocket10/index.pkl")
-    parser.add_argument("--save_path", type=str, default="/home/haotian/Molecule_Generation/MG/ECloudGen_ELIP/data")
-    parser.add_argument("--cache_ecloud", type=str, default='/home/haotian/Molecule_Generation/MG/ECloudGen_ELIP/data/cache')
+    parser.add_argument("--root", type=str, default="./data/crossdocked_pocket10")
+    parser.add_argument("--index_path", type=str, default="./data/crossdocked_pocket10/index.pkl")
+    parser.add_argument("--save_path", type=str, default="../data")
+    parser.add_argument("--cache_ecloud", type=str, default='../data/cache')
     parser.add_argument("--mode", type=str, default='valid')
     parser.add_argument("--processor", type=int, default=1)
     parser.add_argument("--start", type=int, default=0)
-    parser.add_argument("--end", type=int, default=10, help="None for all data")
+    parser.add_argument("--end", type=int, default=100, help="None for all data")
     args = parser.parse_args()
 
     root = args.root

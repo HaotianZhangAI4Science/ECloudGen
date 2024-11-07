@@ -1,0 +1,145 @@
+      -----------------------------------------------------------      
+     |                   =====================                   |     
+     |                           x T B                           |     
+     |                   =====================                   |     
+     |                         S. Grimme                         |     
+     |          Mulliken Center for Theoretical Chemistry        |     
+     |                    University of Bonn                     |     
+      -----------------------------------------------------------      
+
+   * xtb version 6.6.1 (8d0f1dd) compiled by 'conda@1efc2f54142f' on 2023-08-01
+
+   xtb is free software: you can redistribute it and/or modify it under
+   the terms of the GNU Lesser General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   
+   xtb is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Lesser General Public License for more details.
+   
+   Cite this work as:
+   * C. Bannwarth, E. Caldeweyher, S. Ehlert, A. Hansen, P. Pracht,
+     J. Seibert, S. Spicher, S. Grimme, WIREs Comput. Mol. Sci., 2020, 11,
+     e01493. DOI: 10.1002/wcms.1493
+   
+   for GFN2-xTB:
+   * C. Bannwarth, S. Ehlert and S. Grimme., J. Chem. Theory Comput., 2019,
+     15, 1652-1671. DOI: 10.1021/acs.jctc.8b01176
+   for GFN1-xTB:
+   * S. Grimme, C. Bannwarth, P. Shushkov, J. Chem. Theory Comput., 2017,
+     13, 1989-2009. DOI: 10.1021/acs.jctc.7b00118
+   for GFN0-xTB:
+   * P. Pracht, E. Caldeweyher, S. Ehlert, S. Grimme, ChemRxiv, 2019, preprint.
+     DOI: 10.26434/chemrxiv.8326202.v1
+   for GFN-FF:
+   * S. Spicher and S. Grimme, Angew. Chem. Int. Ed., 2020, 59, 15665-15673.
+     DOI: 10.1002/anie.202004239
+   
+   for ALPB and GBSA implicit solvation:
+   * S. Ehlert, M. Stahn, S. Spicher, S. Grimme, J. Chem. Theory Comput.,
+     2021, 17, 4250-4261. DOI: 10.1021/acs.jctc.1c00471
+   
+   for DFT-D4:
+   * E. Caldeweyher, C. Bannwarth and S. Grimme, J. Chem. Phys., 2017,
+     147, 034112. DOI: 10.1063/1.4993215
+   * E. Caldeweyher, S. Ehlert, A. Hansen, H. Neugebauer, S. Spicher,
+     C. Bannwarth and S. Grimme, J. Chem. Phys., 2019, 150, 154122.
+     DOI: 10.1063/1.5090222
+   * E. Caldeweyher, J.-M. Mewes, S. Ehlert and S. Grimme, Phys. Chem. Chem. Phys.
+     2020, 22, 8499-8512. DOI: 10.1039/D0CP00502A
+   
+   for sTDA-xTB:
+   * S. Grimme and C. Bannwarth, J. Chem. Phys., 2016, 145, 054103.
+     DOI: 10.1063/1.4959605
+   
+   in the mass-spec context:
+   * V. Asgeirsson, C. Bauer and S. Grimme, Chem. Sci., 2017, 8, 4879.
+     DOI: 10.1039/c7sc00601b
+   * J. Koopman and S. Grimme, ACS Omega 2019, 4, 12, 15120-15133.
+     DOI: 10.1021/acsomega.9b02011
+   
+   for metadynamics refer to:
+   * S. Grimme, J. Chem. Theory Comput., 2019, 155, 2847-2862
+     DOI: 10.1021/acs.jctc.9b00143
+   
+   for SPH calculations refer to:
+   * S. Spicher and S. Grimme, J. Chem. Theory Comput., 2021, 17, 1701-1714
+     DOI: 10.1021/acs.jctc.0c01306
+   
+   with help from (in alphabetical order)
+   P. Atkinson, C. Bannwarth, F. Bohle, G. Brandenburg, E. Caldeweyher
+   M. Checinski, S. Dohm, S. Ehlert, S. Ehrlich, I. Gerasimov, C. Hölzer
+   A. Katbashev, J. Koopman, C. Lavigne, S. Lehtola, F. März, M. Müller,
+   F. Musil, H. Neugebauer, J. Pisarek, C. Plett, P. Pracht, F. Pultar,
+   J. Seibert, P. Shushkov, S. Spicher, M. Stahn, M. Steiner, T. Strunk,
+   J. Stückrath, T. Rose, and J. Unsleber
+   
+ * started run on 2024/05/27 at 15:24:57.743     
+
+           -------------------------------------------------
+          |                Calculation Setup                |
+           -------------------------------------------------
+
+          program call               : xtb --norestart --input xtb.inp tmp.xyz
+          coordinate file            : tmp.xyz
+          omp threads                :                     1
+
+   ID    Z sym.   atoms
+    1    7 N      1, 6, 17, 24, 31, 38, 45, 52, 60, 61, 69, 77, 89, 96, 103,
+                  112, 124, 128, 134, 140, 142, 150, 157, 165, 174, 180, 188,
+                  189, 200, 207, 214, 223, 231, 232, 239, 241, 249, 257, 265,
+                  270, 275, 283, 291, 298, 310, 320, 324, 333, 341, 350, 358,
+                  366, 367, 373, 375, 383, 391, 398, 400, 411, 418, 425, 427,
+                  428, 432, 441, 450, 458, 466, 474, 475, 482, 489, 491, 498,
+                  500, 501, 507, 513, 525, 532, 534-536, 543, 545, 552,
+                  554-556, 561, 568, 570-572, 580, 588, 596, 597, 605, 612,
+                  614, 622, 628, 636, 640, 646, 648, 653, 658, 666, 673, 675,
+                  683, 690, 698, 705, 713, 714, 722, 729, 731, 739, 744, 748,
+                  755, 767, 774, 776-778, 784, 792, 800, 806, 818, 822, 826,
+                  831, 839, 851, 859, 860, 867, 869-871, 879, 886, 893, 901,
+                  902, 909, 915, 917, 922
+    2    6 C      2, 3, 5, 7, 8, 10-16, 18, 19, 21, 22, 25, 26, 28-30, 32,
+                  33, 35, 36, 39, 40, 42-44, 46, 47, 49-51, 53, 54, 56-59,
+                  62, 63, 65, 66, 70, 71, 73-76, 78, 79, 81-87, 90, 91,
+                  93-95, 97, 98, 100-102, 104, 105, 107-109, 113, 114,
+                  116-122, 125, 126, 129, 130, 132, 135, 136, 138, 139, 143,
+                  144, 146, 147, 149, 151, 152, 154, 155, 158, 159, 161-164,
+                  166, 167, 169-171, 175, 176, 178, 181, 182, 184-187, 190,
+                  191, 193-199, 201, 202, 204-206, 208, 209, 211-213, 215,
+                  216, 218-220, 224, 225, 227-230, 233, 234, 236-238, 242,
+                  243, 245-248, 250, 251, 253, 254, 258, 259, 261-264, 266,
+                  267, 269, 271, 272, 274, 276, 277, 279-282, 284, 285,
+                  287-290, 292, 293, 295-297, 299, 300, 302-308, 311, 312,
+                  314-319, 321-323, 325, 326, 328-330, 334, 335, 337, 338,
+                  340, 342, 343, 345-347, 351, 352, 354, 355, 359, 360,
+                  362-365, 368, 369, 371, 372, 376, 377, 379-382, 384, 385,
+                  387-390, 392, 393, 395-397, 401, 402, 404-410, 412, 413,
+                  415-417, 419, 420, 422-424, 426, 429, 430, 433, 434,
+                  436-438, 442, 443, 445-447, 451, 452, 454, 455, 459, 460,
+                  462-465, 467, 468, 470-473, 476, 477, 479-481, 483, 484,
+                  486-488, 492, 493, 495-497, 499, 502, 503, 505, 508, 509,
+                  511, 514, 515, 517-523, 526, 527, 529-531, 533, 537, 538,
+                  540-542, 546, 547, 549-551, 553, 557, 558, 560, 562, 563,
+                  565-567, 569, 573, 574, 576-579, 581, 582, 584-587, 589,
+                  590, 592-595, 598, 599, 601, 602, 606, 607, 609-611, 615,
+                  616, 618-621, 623, 624, 626, 629, 630, 632-635, 637, 638,
+                  641, 642, 644, 645, 649, 650, 652, 654, 655, 657, 659, 660,
+                  662-665, 667, 668, 670-672, 676, 677, 679-682, 684, 685,
+                  687, 688, 691, 692, 694, 695, 699, 700, 702-704, 706, 707,
+                  709-712, 715, 716, 718-721, 723, 724, 726-728, 732, 733,
+                  735, 736, 740, 741, 743, 745, 746, 749, 750, 752-754, 756,
+                  757, 759-765, 768, 769, 771-773, 775, 779, 780, 782, 785,
+                  786, 788, 789, 791, 793, 794, 796-799, 801, 802, 804, 807,
+                  808, 810-816, 819, 820, 823, 824, 827, 828, 830, 832, 833,
+                  835, 836, 840, 841, 843-849, 852, 853, 855-858, 861, 862,
+                  864-866, 868, 872, 873, 875-878, 880, 881, 883, 884, 887,
+                  888, 890-892, 894, 895, 897-900, 903, 904, 906-908, 910,
+                  911, 913, 914, 918, 919, 921, 923, 924, 926-928
+    3    8 O      4, 9, 20, 23, 27, 34, 37, 41, 48, 55, 64, 67, 68, 72, 80,
+                  88, 92, 99, 106, 110, 111, 115, 123, 127, 131, 133, 137,
+                  141, 145, 153, 156, 160, 168, 172, 173, 177, 183, 192, 203,
+                  210, 217, 221, 222, 226, 235, 240, 244, 252, 255, 256, 260,
+                  268, 273, 278, 286, 294, 301, 309, 313, 327, 331, 332, 336,
+                  344, 348, 349, 353, 356, 357, 361, 370, 374, 378, 386, 394,

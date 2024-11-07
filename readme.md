@@ -1,3 +1,9 @@
+<div align=center>
+<img src="./configs/figs/ecloudgen_legend_color_green.png" width="90%" height="90%" alt="TOC" align=center />
+</div>
+
+
+
 ECloudGen
 =======
 
@@ -19,7 +25,7 @@ conda activate ecloudgen
 This environment has been successfully tested on CUDA==11.3
 
 ```
-conda create -n ecloudgen rdkit openbabel moleculekit scikit-learn scipy jupyter python-lmdb pytorch cudatoolkit=11.3 omegaconf einops accelerate h5py wandb xtb ignite gpytorch altair python=3.9 -c conda-forge 
+conda create -n ecloudgen rdkit openbabel moleculekit scikit-learn scipy jupyter python-lmdb pytorch cudatoolkit=11.3 omegaconf einops accelerate biopython h5py wandb xtb ignite gpytorch altair python=3.9 -c conda-forge 
 ```
 
 ## Data 
@@ -42,11 +48,18 @@ tar -xzvf crossdocked_pocket10.tar.gz
 </div>
 
 
+```shell
+# modify the data path and batch_size in the ./configs/eclouddiff.yml 
+python generate_from_pdb.py --pdb_file pdb_file ./play_around/peptide_example/7ux5_protein.pdb --lig_file ./play_around/peptide_example/7ux5_peptide.sdf --outputs_dir results
+```
+
 ## Training 
 
 The training process is released as train.py, the following command is an example of how to train a model.
 
 ```shell
+# prepare a demo data
+python ./datasets/generate_pktlig_data.py
 # modify the data path and batch_size in the ./configs/eclouddiff.yml 
 python train_eclouddiff.py 
 ```

@@ -93,6 +93,33 @@ class CDCalculator(object):
             result = {}
         os.chdir(self.rootdir)
         return result
+    
+    def calculate_pdb(self, pdb: str) -> dict:
+        os.chdir(self.workdir)
+        pdb2xyz = 'obabel ' + pdb + ' -O tmp.xyz'
+        self._errno = os.system(pdb2xyz)
+        if (self._errno == 0):
+            command = self.xtb_command + ' --norestart --input xtb.inp tmp.xyz' + \
+                                         ' 2> ' + os.devnull + ' > log'
+            self._errno = os.system(command)
+            if (self._errno == 0):
+                try:
+                    density, meta = cubtools.read_cube('density.cub')
+                    meta['org'] = numpy.array(meta['org']) / BOHR
+                    meta['len'] = (numpy.array(meta['xvec']) * meta['nx'] +
+                                   numpy.array(meta['yvec']) * meta['ny'] +
+                                   numpy.array(meta['zvec']) * meta['nz']) / BOHR
+                    # meta.pop('atoms')
+                    result = {'density': density * (BOHR ** 3), 'meta': meta}
+                except Exception as e:
+                    print(e)
+                    result = {}
+            else:
+                print('xtb has failed')
+                result = {}
+        else:
+            print('obabel has failed')
+            result = {}
 
     @property
     def err_msg(self):

@@ -8,6 +8,7 @@ try:
     from .pdb_parser import PDBProtein
 except:
     from utils.pdb_parser import PDBProtein
+from rdkit.Chem import AllChem
 
 def set_mol_position(mol, pos):
     mol = copy.deepcopy(mol)
@@ -81,6 +82,7 @@ def pocket_trunction(pdb_file, threshold=10, outname=None, sdf_file=None, centro
     f.close()
 
     return outname
+
 def sdf2centroid(sdf_file):
     supp = Chem.SDMolSupplier(sdf_file, sanitize=False)
     lig_xyz = supp[0].GetConformer().GetPositions()
@@ -88,3 +90,13 @@ def sdf2centroid(sdf_file):
     centroid_y = lig_xyz[:,1].mean()
     centroid_z = lig_xyz[:,2].mean()
     return centroid_x, centroid_y, centroid_z
+
+def gen_geom_with_rdkit(mol):
+    try:
+        mol = Chem.AddHs(mol)
+        AllChem.EmbedMolecule(mol)
+        AllChem.MMFFOptimizeMolecule(mol)
+        mol = Chem.RemoveHs(mol)
+    except:
+        pass
+    return mol

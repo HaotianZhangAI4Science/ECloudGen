@@ -14,19 +14,29 @@ This figure represent: Electron Clouds; Protein-Ligand Interactions; Latent Diff
 
 ## Environment 
 
-### Install via conda yaml file (cuda 11.3)
+### Install via conda yaml file (cuda 12.1)
 
 ```python
-conda env create -f ecloudgen.yml
+conda env create -f ecloudgen_env.yml
 conda activate ecloudgen 
 ```
 
 ### Install manually 
 
-This environment has been successfully tested on CUDA==11.3
+This environment has been successfully tested on CUDA==12.1
 
 ```
-conda create -n ecloudgen rdkit openbabel moleculekit scikit-learn scipy jupyter python-lmdb pytorch cudatoolkit=11.3 omegaconf einops accelerate biopython h5py wandb xtb ignite gpytorch altair python=3.9 -c conda-forge 
+# recommend using numpy<2
+mamba create -n ecloudgen pytorch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 pytorch-cuda=12.1 plyfile pyg rdkit biopython easydict jupyter ipykernel lmdb mamba -c pytorch -c nvidia -c pyg -c conda-forge
+
+conda activate ecloudgen
+
+# optional 
+pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.2.0+cu121.html 
+
+mamba install openbabel scikit-learn scipy omegaconf einops accelerate h5py wandb xtb ignite gpytorch altair -c conda-forge
+
+pip install moleculekit
 ```
 
 ## Data 

@@ -11,6 +11,7 @@ from rdkit.Chem import Descriptors, AllChem, Crippen, Lipinski
 from rdkit.Chem.Descriptors import qed, MolLogP
 from rdkit import DataStructs
 from models.ECloudDecipher.optimize.rules.sascorer import compute_sa_score
+from models.ECloudDecipher.optimize.rules.sascorer import calculateScore
 from copy import deepcopy
 
 current_script_path = os.path.abspath(__file__)

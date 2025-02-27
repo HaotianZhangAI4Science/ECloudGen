@@ -60,7 +60,7 @@ def main():
     # where to save model checkpoints
     args.model_dir = "./model_ckpts/"
     # where to save dataset cache
-    args.data_dir = "./dataset/data/ecloud_coati.h5"
+    args.data_dir = "./dataset/data/ecloud_decipher_token.h5"
     args.model_filename = "ecloud_decipher"
 
     print(f"running on {args.gpus} gpus")

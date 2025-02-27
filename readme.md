@@ -48,13 +48,7 @@ tar -xzvf crossdocked_pocket10.tar.gz
 
 ### ECloudDecipher dataset preparation. 
 
-see `/home/odinz/molecular_design/ECloudGen_demo/dataset/02_generate_ligecloud_data.py`
-
-```shell
-python 02_generate_ligecloud_data.py --data data/ecloud.h5 --smiles data/all.smi --output data/ecloud_decipher.h5
-```
-
-
+see `ECloudGen/dataset/02_generate_ligecloud_data.py`
 
 ## Generation 
 
@@ -70,22 +64,24 @@ You can download the [pretrained checkpoints](https://zenodo.org/records/1493543
 python generate_from_pdb.py --pdb_file pdb_file ./play_around/peptide_example/7ux5_protein.pdb --lig_file ./play_around/peptide_example/7ux5_peptide.sdf --outputs_dir results
 ```
 
+Generate from ECloud, ECloud can be from ECloudDiff module or from the hit ligands. 
+
+```shell
+python generate_from_ecloud.py --input_ecloud play_around/example/BRD4_gen_ecloud.npy --model model_ckpts/ecloud_smiles_67.pkl --num_gen 100 --batch_size 32 --noise 0.6 --output output/test.sdf
+```
+
+## Optimization 
+
+The model-agnostic optimizer can be found at `ECloudGen/play_around/model_agnostic_optimizer.ipynb`
+
 ## Training 
 
 The training process is released as train.py, the following command is an example of how to train a model.
 
 ```shell
-# prepare a demo data
-python ./datasets/generate_pktlig_data.py
 # modify the data path and batch_size in the ./configs/eclouddiff.yml 
 python train_eclouddiff.py 
+python train_eclouddecipher.py
 ```
-
-
-
-
-
-
-
 
 

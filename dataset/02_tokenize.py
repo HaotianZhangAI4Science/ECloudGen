@@ -11,35 +11,32 @@ from models.ECloudDecipher.models.encoding.tokenizers import get_vocab
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--data', type=str, default='data/ecloud_decipher.h5')
-    parser.add_argument('--output', type=str, default='data/ecloud_decipher_token.h5')
     args = parser.parse_args()
 
     tokenizer = TrieTokenizer(n_seq=64, **get_vocab('mar'))
 
-    with h5py.File(args.data, 'r') as f_in:  
-        ecloud_in = f_in['eclouds']
-        smiles_in = f_in['smiles']   
+    with h5py.File(args.data, 'r+') as f:
+        ecloud_in = f['eclouds'] 
+        smiles_in = f['smiles']   
+
         smiles = [s.decode('utf-8') for s in smiles_in]
+        num_mols = len(smiles)
+        print("Number of molecules:", num_mols)
 
-        print("Number of molecules:", len(smiles))
+        if 'raw_tokens' in f:
+            del f['raw_tokens']
+        if 'augmented_tokens' in f:
+            del f['augmented_tokens']
 
-        with h5py.File(args.output, 'w') as f_out:
-            eclouds_out = f_out.create_dataset("eclouds", (len(smiles), 32, 32, 32), dtype='float32')
-            raw_tokens_out = f_out.create_dataset("raw_tokens", (len(smiles), 64), dtype='int32')
-            augmented_tokens_out = f_out.create_dataset("augmented_tokens", (len(smiles), 64), dtype='int32')
+        raw_tokens_dset = f.create_dataset('raw_tokens', (num_mols, 64), dtype='int32')
+        augmented_tokens_dset = f.create_dataset('augmented_tokens', (num_mols, 64), dtype='int32')
 
-            for i, s in tqdm(enumerate(smiles), total=len(smiles)):
-                mol = Chem.MolFromSmiles(s)
-                if mol is None:
-                    continue
-                s_norm = Chem.MolToSmiles(mol)
+        for i, s in tqdm(enumerate(smiles), total=num_mols):
 
-                raw_token = tokenizer.tokenize_text("[SMILES]" + s_norm + "[STOP]", pad=True)
-                aug_token = tokenizer.tokenize_text("[CLIP][UNK][SMILES][SUFFIX][MIDDLE]" + s_norm + "[STOP]", pad=True)
+            raw_token = tokenizer.tokenize_text("[SMILES]" + s + "[STOP]", pad=True)
+            aug_token = tokenizer.tokenize_text("[CLIP][UNK][SMILES][SUFFIX][MIDDLE]" + s + "[STOP]", pad=True)
 
-                eclouds_out[i] = ecloud_in[i]
-                raw_tokens_out[i] = raw_token
-                augmented_tokens_out[i] = aug_token
-
-                if i % 10000 == 0:
-                    print("Processed:", i)
+            raw_tokens_dset[i] = raw_token
+            augmented_tokens_dset[i] = aug_token
+    
+    print("Token writing done.")

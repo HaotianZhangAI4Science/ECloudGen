@@ -3,8 +3,6 @@
 </div>
 
 
-Comming Soon! 
-
 ECloudGen
 =======
 
@@ -27,21 +25,17 @@ This environment has been successfully tested on CUDA==12.1
 
 ```
 # recommend using numpy<2
-mamba create -n ecloudgen pytorch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 pytorch-cuda=12.1 plyfile pyg rdkit biopython easydict jupyter ipykernel lmdb mamba -c pytorch -c nvidia -c pyg -c conda-forge
+mamba create -n ecloudgen pytorch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 pytorch-cuda=12.1 plyfile pyg rdkit biopython easydict jupyter ipykernel lmdb mamba moleculekit openbabel scikit-learn scipy omegaconf einops accelerate h5py wandb xtb ignite gpytorch altair -c pytorch -c nvidia -c pyg -c conda-forge -c acellera
 
 conda activate ecloudgen
 
 # optional 
 pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.2.0+cu121.html 
-
-mamba install openbabel scikit-learn scipy omegaconf einops accelerate h5py wandb xtb ignite gpytorch altair -c conda-forge
-
-pip install moleculekit
 ```
 
 ## Data 
 
-### Protein-ligand pair dataset preparation. 
+### ECloudDiff dataset preparation. 
 
 You can download the raw data as provided in [ResGen](https://github.com/HaotianZhangAI4Science/ResGen). You can also download the processed protein-ligand pair from the [this link](https://drive.google.com/drive/folders/1CzwxmTpjbrt83z_wBzcQncq84OVDPurM). 
 
@@ -52,7 +46,19 @@ tar -xzvf crossdocked_pocket10.tar.gz
 # Then follow the ./dataset/readme.md for processing protein-ligand dataset from scratch. 
 ```
 
+### ECloudDecipher dataset preparation. 
+
+see `/home/odinz/molecular_design/ECloudGen_demo/dataset/02_generate_ligecloud_data.py`
+
+```shell
+python 02_generate_ligecloud_data.py --data data/ecloud.h5 --smiles data/all.smi --output data/ecloud_decipher.h5
+```
+
+
+
 ## Generation 
+
+You can download the [pretrained checkpoints](https://zenodo.org/records/14935431), and put them in the `ECloudGen/model_ckpts` .
 
 <div align=center>
 <img src="./configs/figs/ECloudGen.png" width="90%" height="90%" alt="TOC" align=center />
